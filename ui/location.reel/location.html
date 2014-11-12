@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="location.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "_dev": {
+                "comment": "foo"
+            }
+        },
+        "icon": {
+            "prototype": "digit/ui/image.reel",
+            "properties": {
+                "element": {"#": "icon"},
+                "crossOrigin": null
+            },
+            "bindings": {
+                "src": {"<-": "@owner.location.icon"}
+            }
+        },
+        "name": {
+            "prototype": "digit/ui/text-field.reel",
+            "properties": {
+                "element": {"#": "name"},
+                "placeholderValue": "Location"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.location.name"}
+            }
+        },
+        "temp": {
+            "prototype": "digit/ui/text.reel",
+            "properties": {
+                "element": {"#": "temp"},
+                "value": "Text"
+            },
+            "bindings": {
+                "value": {"<-": "@owner.location.temp"}
+            }
+        },
+        "time": {
+            "prototype": "digit/ui/text.reel",
+            "properties": {
+                "element": {"#": "time"},
+                "value": "Text"
+            },
+            "bindings": {
+                "value": {"<-": "@owner.location.time"}
+            }
+        },
+        "weather": {
+            "prototype": "digit/ui/text.reel",
+            "properties": {
+                "element": {"#": "weather"},
+                "value": ""
+            },
+            "bindings": {
+                "value": {"<-": "@owner.location.weather"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="Location">
+        <input data-montage-id="name" type="text">
+        <img data-montage-id="icon">
+        <span data-montage-id="weather"></span>
+        <span data-montage-id="temp"></span>
+        <span data-montage-id="time"></span>
+    </div>
+</body>
+</html>

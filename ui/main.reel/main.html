@@ -2,21 +2,106 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Main</title>
-
+    <title>
+        Main
+    </title>
     <link rel="stylesheet" href="main.css">
-
     <script type="text/montage-serialization">
-        {
-            "owner": {
-                "properties": {
-                    "element": {"#": "main"}
-                }
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "main"}
             }
+        },
+        "actionEventListener": {
+            "prototype": "montage/core/event/action-event-listener",
+            "properties": {
+                "action": "addContent",
+                "handler": {"@": "locationsController"}
+            },
+            "_dev": {
+                "isHidden": true
+            }
+        },
+        "addLocation": {
+            "prototype": "digit/ui/button.reel",
+            "properties": {
+                "element": {"#": "addLocation"},
+                "enabled": true,
+                "label": "Add location"
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "useCapture": false,
+                    "listener": {"@": "actionEventListener"}
+                }
+            ]
+        },
+        "locationEntry": {
+            "prototype": "ui/location.reel",
+            "properties": {
+                "element": {"#": "locationEntry"}
+            },
+            "bindings": {
+                "location": {"<-": "@locationsList:iteration.object"}
+            }
+        },
+        "locationsController": {
+            "prototype": "montage/core/range-controller"
+        },
+        "locationsList": {
+            "prototype": "digit/ui/list.reel",
+            "properties": {
+                "element": {"#": "locationsList"},
+                "contentController": {"@": "locationsController"}
+            }
+        },
+        "text": {
+            "prototype": "digit/ui/text.reel",
+            "properties": {
+                "element": {"#": "text"},
+                "value": ""
+            },
+            "bindings": {
+                "value": {"<-": "@owner.remaining"}
+            }
+        },
+        "updateWeather": {
+            "prototype": "digit/ui/button.reel",
+            "properties": {
+                "element": {"#": "updateWeather"},
+                "enabled": true,
+                "label": "Update Weather"
+            },
+            "bindings": {
+                "enabled": {"<-": "@locationsController.content.length > 0"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "useCapture": false,
+                    "listener": {"@": "owner"}
+                }
+            ]
         }
+    }
     </script>
 </head>
 <body>
-    <div data-montage-id="main" data-montage-skin="light" class="Main"></div>
+    <div data-montage-id="main" data-montage-skin="light" class="Main">
+        <button data-montage-id="addLocation"></button>
+        <ul data-montage-id="locationsList">
+            <li>
+                <div data-montage-id="locationEntry"></div>
+            </li>
+        </ul>
+        <button data-montage-id="updateWeather">
+
+        </button>
+        <p data-montage-id="text">
+
+        </p>
+    </div>
 </body>
 </html>
