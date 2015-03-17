@@ -38,6 +38,12 @@
                 }
             ]
         },
+        "foo": {
+            "prototype": "montage/core/radio-button-controller",
+            "bindings": {
+                "content": {"<-": "@repetition2.content"}
+            }
+        },
         "locationEntry": {
             "prototype": "ui/location.reel",
             "properties": {
@@ -57,6 +63,28 @@
                 "contentController": {"@": "locationsController"}
             }
         },
+        "radio": {
+            "prototype": "digit/ui/radio-button.reel",
+            "properties": {
+                "element": {"#": "radio"},
+                "checked": false,
+                "radioButtonController": {"@": "foo"}
+            },
+            "bindings": {
+                "value": {"<-": "@repetition2:iteration.object"}
+            }
+        },
+        "repetition2": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "repetition2"},
+                "content": [
+                    "foo",
+                    "bar",
+                    "baz"
+                ]
+            }
+        },
         "text": {
             "prototype": "digit/ui/text.reel",
             "properties": {
@@ -65,6 +93,26 @@
             },
             "bindings": {
                 "value": {"<-": "@owner.remaining"}
+            }
+        },
+        "text2": {
+            "prototype": "digit/ui/text.reel",
+            "properties": {
+                "element": {"#": "text2"},
+                "value": "Text"
+            },
+            "bindings": {
+                "value": {"<-": "@foo.value"}
+            }
+        },
+        "text3": {
+            "prototype": "digit/ui/text.reel",
+            "properties": {
+                "element": {"#": "text3"},
+                "value": "Text"
+            },
+            "bindings": {
+                "value": {"<-": "@repetition2:iteration.object"}
             }
         },
         "updateWeather": {
@@ -102,6 +150,14 @@
         <p data-montage-id="text">
 
         </p>
+        <ul data-montage-id="repetition2">
+            <li>
+                <input type="radio" data-montage-id="radio">
+                    <p data-montage-id="text3"></p>
+                </input>
+            </li>
+        </ul>
+        <p data-montage-id="text2"></p>
     </div>
 </body>
 </html>

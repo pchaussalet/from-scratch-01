@@ -11,7 +11,7 @@ var Component = require("montage/ui/component").Component;
 exports.Location = Component.specialize(/** @lends Location# */ {
     constructor: {
         value: function Location() {
-            this.super();
+            this.super( );
         }
     }
 });
